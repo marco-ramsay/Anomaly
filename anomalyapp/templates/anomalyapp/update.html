@@ -1,0 +1,38 @@
+{%  extends 'anomalyapp/template.html' %}
+{% load static %}
+{% load crispy_forms_tags%}
+{% block content %}
+<div class="content-new"></div>
+     <div class="content" style="background-color: #151515;  ">
+
+       <div class="col-md-12 mb-4">
+         <h1 class="text-center card-title" style="padding: 30px;">UPDATE ANOMALY</h1>
+
+       </div>
+<br>
+<div class="row">
+	<div class="col-md-6" style="margin: 0 auto">
+		<div class="card card-body" style="background-color: #2a2a2a;">
+
+
+
+
+			<form action="" method="POST" enctype="multipart/form-data">
+
+				{% csrf_token %}
+        {{form|crispy}}
+        <div class="pull-right">
+
+          {% if request.GET.next %}
+            <input type="hidden" name="next" value="{{request.GET.next}}" method="POST">
+          {% endif %}
+
+          <input type='submit' class='btn btn-finish btn-fill btn-pinterest btn-wd' name='Submit' value='Submit' />
+        </div>
+			</form>
+		</div>
+	</div>
+</div>
+</div>
+</div>
+{% endblock %}

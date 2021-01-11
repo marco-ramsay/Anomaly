@@ -1,0 +1,140 @@
+{% load static  %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>pdf test</title>
+    <style>
+    /* Page margins are defined using CSS */
+    @page {
+      margin: 1cm;
+      margin-top:2.5cm;
+      margin-bottom: 2.5cm;
+
+    /* Header frame starts within margin-top of @page */
+      @frame header {
+      -pdf-frame-content: headerContent; /* headerContent is the #id of the element */
+      top: 1cm;
+      margin-left: 1cm;
+      margin-right:1cm;
+      height:1cm;
+      }
+
+    /* Footer frame starts outside margin-bottom of @page */
+      @frame footer {
+        -pdf-frame-content: footerContent;
+        bottom: 1cm;
+        margin-left: 1cm;
+        margin-right: 1cm;
+        height: 1cm;
+      }
+    }
+
+    #footerContent {
+      border-top: 5px solid red
+    }
+
+    h1 {
+  -pdf-outline: true;  -pdf-level: 0;
+  -pdf-open: false;
+}
+
+h2 {
+-pdf-outline: true;  -pdf-level: 0;
+-pdf-open: True;
+}
+    </style>
+  </head>
+  <body>
+
+<div id="headerContent"><img src="../static/reach-logo.JPG" height="100px"></div>
+  <hr>
+  <h1 style="text-align:center">ANOMALY REPORT | {{anomaly}}</h1>
+  <hr>
+
+<h2 style="border-bottom:1px solid #9a9a9a; padding-top: 10px;  padding-bottom: 10px; ">DETAILS</h2>
+<table style="border-bottom: 1px solid #9a9a9a; padding-top: 7px;">
+  <tr>
+    <td><h5>CLIENT:</h5></td>
+    <td>{{anomaly.client}}</td>
+    <td><h5>ASSET:</h5></td>
+    <td>{{anomaly.asset}}</td>
+  </tr>
+  <tr>
+    <td><h5>COMPONENT:</h5></td>
+    <td>{{anomaly.component}}</td>
+    <td><h5>SUB-COMPONENT:</h5></td>
+    <td>{{anomaly.sub_component}}</td>
+  </tr>
+  <tr>
+    <td><h5>CODE:</h5></td>
+    <td>{{anomaly.code}}</td>
+    <td><h5>CRITICALITY:</h5></td>
+    <td>{{anomaly.criticality}}</td>
+  </tr>
+  <tr>
+    <td><h5>SUMMARY DESCRIPTION</h5></td>
+    <td></td>
+    <td><h5>DATE:</h5></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td style="height:200px; border-bottom:5px solid #fff; vertical-align:top; padding-top: 10px;" colspan="4">{{anomaly.comments|linebreaks}}</td>
+  </tr>
+</table>
+<div style="height:100px;">
+
+</div>
+    <hr>
+
+<h2 style="border-bottom:1px solid #9a9a9a; padding-top: 10px;  padding-bottom: 10px;">IMAGES</h2>
+
+    <table style="border-bottom: 1px solid #9a9a9a; padding: 5px; text-align: center">
+      <tr>
+        <td><img src="{{anomaly.image_1.path}}" height="300px"></td>
+        <td><img src="{{anomaly.image_2.path}}" height="300px"></td>
+      </tr>
+      <tr>
+        <td style="border-bottom: 1px solid #000;">{{anomaly.image_1_description}}</td>
+        <td style="border-bottom: 1px solid #000;">{{anomaly.image_2_description}}</td>
+      </tr>
+    </table>
+
+<h2 style="border-bottom:1px solid #9a9a9a; padding-top: 10px;  padding-bottom: 10px;">REVIEW</h2>
+
+<table style="border-bottom: 1px solid #9a9a9a; padding-top: 7px;">
+  <tr>
+    <td><h5>COORDINATOR NAME:</h5></td>
+    <td>{{anomaly.coord}}</td>
+    <td><h5>SIGN:</h5></td>
+    <td></td>
+    <td><h5>DATE:</h5></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><h5>CLIENT REP NAME:</h5></td>
+    <td>{{anomaly.obcr}}</td>
+    <td><h5>SIGN:</h5></td>
+    <td></td>
+    <td><h5>DATE:</h5></td>
+    <td></td>
+  </tr>
+</table>
+
+
+    <div id="footerContent">
+
+    <table style="padding-top: 10px;">
+      <tr>
+        <td><h5>Reach Subsea</h5></td>
+        <td style="text-align:center"><h5>page <pdf:pagenumber> of 1 </h5></td>
+        <td style="text-align:right"><h5>Doc-No_AR001</h5></td>
+
+      </tr>
+    </table>
+
+
+
+    </div>
+  </body>
+</html>

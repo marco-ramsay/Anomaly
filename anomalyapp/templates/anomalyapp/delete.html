@@ -1,0 +1,31 @@
+{%  extends 'anomalyapp/template.html' %}
+{% load static %}
+{% block content %}
+<div class="content-new"></div>
+     <div class="content" style="background-color: #151515;  ">
+<br>
+<div class="row">
+	<div class="col-md-6">
+		<div class="card card-body" style="background-color: #2a2a2a;">
+
+
+			<p>Are you sure you want to delete "{{item}}{{project.client}}"?</p>
+
+			<form action="{% url 'delete_anomaly' item.id  %}" method="POST">
+
+				{% csrf_token %}
+
+        {% if request.GET.next %}
+          <input type="hidden" name="next" value="{{request.GET.next}}" method="POST">
+        {% endif %}
+
+				<a class="btn btn-warning" href="{% url 'projects' %}">Cancel</a>
+
+				<input class="btn btn-pinterest" type="submit" name="Confirm">
+			</form>
+		</div>
+	</div>
+</div>
+</div>
+</div>
+{% endblock %}
